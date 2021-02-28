@@ -1,7 +1,6 @@
 import { Server } from './Server/Server';
 
 class Laucher {
-  private name: string;
   private server: Server;
   constructor() {
     this.server = new Server();
