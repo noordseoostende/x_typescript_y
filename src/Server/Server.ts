@@ -1,25 +1,29 @@
 import { createServer, IncomingMessage, ServerResponse } from 'http';
+import { Authorizer } from '../Authorization/Authorizer';
+import { LoginHandler } from './LoginHandler';
 import { Utils } from './Utils';
 
 
 export class Server {
+
+  private authorizer: Authorizer = new Authorizer();
   
   public createServer(){
     createServer(
-      (req: IncomingMessage, res: ServerResponse) => {
+      async (req: IncomingMessage, res: ServerResponse) => {
         console.log('geeft verzoek uit: ' + req.url);
         const basePath = Utils.getUrlBasePath(req.url);
 
         switch (basePath) {
           case 'login':
-            new LoginHandler (req, res).handleRequest();
+            await new LoginHandler(req, res, this.authorizer).handleRequest();
             break;
         
           default:
             break;
         }
 
-        res.end();
+
 
       }
     ).listen(8080);
