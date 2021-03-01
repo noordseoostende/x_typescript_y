@@ -13,22 +13,27 @@ export class LoginHandler implements Handler {
   }
 
   public async handleRequest(): Promise<void> {
-    const body = await this.getRequestBody();
-    const sessionToken = await this.tokenGenerator.generateToken(body);
-    if (sessionToken) {
-      this.res.write('geldige referenties');
-    } else {
-      this.res.write('verkeerde referenties');
-
+    try {
+      
+      const body = await this.getRequestBody();
+      const sessionToken = await this.tokenGenerator.generateToken(body);
+      if (sessionToken) {
+        this.res.write('geldige referenties');
+      } else {
+        this.res.write('verkeerde referenties');
+  
+      }
+    } catch (error) {
+      this.res.write('error: ' + error.message)
     }
   }
-  private getRequestBody(): Promise<Account>{
+  private getRequestBody(): Promise<Account> {
     return new Promise((resolve, reject) => {
       let body = '';
-      this.req.on('data', (data:string) =>{
+      this.req.on('data', (data: string) => {
         body += data;
       });
-      this.req.on('end', ()=>{
+      this.req.on('end', () => {
         try {
           resolve(JSON.parse(body))
         } catch (error) {
