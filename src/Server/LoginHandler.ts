@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from "http";
-import { HTTP_CODES, HTTP_METHODS } from "../Shared/Model";
 import { Account, Handler, TokenGenerator } from "./Model";
+import { HTTP_CODES, HTTP_METHODS } from "../Shared/Model";
 
 export class LoginHandler implements Handler {
   private req: IncomingMessage;
@@ -69,7 +69,7 @@ export class LoginHandler implements Handler {
       });
       this.req.on('error', (error: any) => {
         reject(error);
-      }
+      })
     });
 
   }

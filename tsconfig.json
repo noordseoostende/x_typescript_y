@@ -7,6 +7,6 @@
     "strictNullChecks": true,
     "strict": true,
     "outDir": "dist",
-    "rootDir": ""
+    "rootDir": "src"
   }
 }
