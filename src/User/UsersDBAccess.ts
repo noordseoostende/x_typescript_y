@@ -1,6 +1,6 @@
 import * as Nedb from 'nedb';
 
-export class UserDBAccess {
+export class UsersDBAccess {
   private nedb: Nedb;
 
     constructor(){

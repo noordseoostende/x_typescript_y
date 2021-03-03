@@ -15,11 +15,12 @@ export class UserCredentialsDBAccess {
 
 
     public async putUserCredential(userCredentials: UserCredentials): Promise<any> {
-        return new Promise((resolve, reject) => {this.nedb.insert(userCredentials, (err: Error, docs: any) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(docs)
+        return new Promise((resolve, reject) => { 
+            this.nedb.insert(userCredentials, (err: Error, docs: any) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(docs)
             }
         })
     });

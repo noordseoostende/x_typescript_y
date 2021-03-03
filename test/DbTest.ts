@@ -1,5 +1,5 @@
 import {UserCredentialsDBAccess} from '../src/Authorization/UserCredentialsDBAccess';
-import { UserDBAccess } from '../src/User/UserDBAccess';
+import { UserDBAccess } from '../src/User/UsersDBAccess';
 
 class DbTest {
 
